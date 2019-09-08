@@ -1,0 +1,16 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
+
+COPY cars/*.csproj /cars/
+
+COPY cars/. /cars/
+WORKDIR /cars
+RUN dotnet restore
+RUN dotnet publish cars.csproj -c Release -o out
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+WORKDIR /app
+COPY --from=build /cars/out ./
+
+EXPOSE 80
+
+ENTRYPOINT ["dotnet", "cars.dll"]

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greetings
+spec:
+  selector:
+    matchLabels:
+      app: greetings
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: greetings
+    spec:
+      containers:
+        - name: greetings
+          image: "greeting-service:v9"
+          imagePullPolicy: Never
+          ports:
+            - name: http
+              containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: greetings-service
+spec:
+  selector:
+    app: greetings
+  ports:
+  - protocol: TCP
+    port: 8000
+    name: http
+    targetPort: 80
+  type: ClusterIP
+
