@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: api-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - http:
+      paths:
+        - path: /api/Greetings
+          backend:
+            serviceName: greetings-service
+            servicePort: 80
+        - path: /api/Friends
+          backend:
+            serviceName: friends-service
+            servicePort: 80

@@ -12,5 +12,6 @@ WORKDIR /app
 COPY --from=build /greetings/out ./
 
 EXPOSE 80
+EXPOSE 443
 
 ENTRYPOINT ["dotnet", "greetings.dll"]
