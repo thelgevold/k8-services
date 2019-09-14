@@ -20,7 +20,7 @@ namespace cars.Controllers
         public async Task<string> Get()
         {
             var client = _clientFactory.CreateClient();
-            string response = await client.GetStringAsync("http://greetings-service:8000/api/Greetings");
+            string response = await client.GetStringAsync("http://greetings-service/api/Greetings");
            
             return $"{response} from BMW";
         }

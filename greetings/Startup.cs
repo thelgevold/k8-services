@@ -41,7 +41,7 @@ namespace greetings
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+           // app.UseHttpsRedirection();
             app.UseMvc();
 
             AppInfo.Name = DateTime.Now.Ticks.ToString();

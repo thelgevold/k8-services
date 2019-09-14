@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: greetings
-  replicas: 5
+  replicas: 1
   template:
     metadata:
       labels:
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: greetings
-          image: "greeting-service:v9"
+          image: "greeting-service:v6"
           imagePullPolicy: Never
           ports:
             - name: http
@@ -29,8 +29,8 @@ spec:
     app: greetings
   ports:
   - protocol: TCP
-    port: 8000
     name: http
     targetPort: 80
+    port: 80
   type: ClusterIP
 
